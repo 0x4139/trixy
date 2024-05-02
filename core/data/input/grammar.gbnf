@@ -1,0 +1,22 @@
+culturalReferences ::= "[" space string "]" space
+culturalReferences-kv ::= "\"culturalReferences\"" space ":" space culturalReferences
+emotions ::= "[" space string "," space string "]" space
+emotions-kv ::= "\"emotions\"" space ":" space emotions
+emotionTrend-kv ::= "\"emotionTrend\"" space ":" space integer
+impactAssessment-kv ::= "\"impactAssessment\"" space ":" space string
+impactAssessmentScore-kv ::= "\"impactAssessmentScore\"" space ":" space integer
+integer ::= ("-"? ([0-9] | [1-9] [0-9]*)) space
+languageStyle-kv ::= "\"languageStyle\"" space ":" space string
+marketSentiment-kv ::= "\"marketSentiment\"" space ":" space integer
+root ::= "{" space sentiment-kv "," space emotions-kv "," space summary-kv "," space users-kv "," space topics-kv "," space impactAssessment-kv "," space impactAssessmentScore-kv "," space languageStyle-kv "," space culturalReferences-kv "," space marketSentiment-kv "," space emotionTrend-kv "}" space
+sentiment-kv ::= "\"sentiment\"" space ":" space string
+space ::= " "?
+string ::=  "\"" (
+        [^"\\] |
+        "\\" (["\\/bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F])
+      )* "\"" space
+summary-kv ::= "\"summary\"" space ":" space string
+topics ::= "[" space string "," space string "," space string "]" space
+topics-kv ::= "\"topics\"" space ":" space topics
+users ::= "[" space string "," space string "," space string "," space string "," space string "," space string "," space string "]" space
+users-kv ::= "\"users\"" space ":" space users

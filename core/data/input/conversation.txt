@@ -1,0 +1,57 @@
+[
+    {
+        "name": "0xReno (NEVER DM YOU)",
+        "date": "22 Apr 2024 at 04:11:42",
+        "message": "Our official website has an ecosystem introduction. Yes, you can stake now, please send /staking command and then you will receive the guide from our bot."
+    },
+    {
+        "name": "Rose",
+        "date": "22 Apr 2024 at 04:12:47",
+        "message": "You can find Taraxa's staking guide here: https://docs.taraxa.io/staking."
+    },
+    {
+        "name": "0xReno (NEVER DM YOU)",
+        "date": "22 Apr 2024 at 05:13:02",
+        "message": "I suggest you can add mainnet through chainlist, you don’t need to add rpc manually."
+    },
+    {
+        "name": "EVA [ BitMart ]",
+        "date": "22 Apr 2024 at 05:38:10",
+        "message": "Hi admin is he from your core team TaraxaBlockDag? Tagging not allowed in the group so this is his ID."
+    },
+    {
+        "name": "Eevee",
+        "date": "22 Apr 2024 at 05:54:08",
+        "message": "Not core team."
+    },
+    {
+        "name": "EVA [ BitMart ]",
+        "date": "22 Apr 2024 at 05:55:16",
+        "message": "Thank you for the clarification, whom should I contact for listing proposal?"
+    },
+    {
+        "name": "iExec",
+        "date": "22 Apr 2024 at 05:58:00",
+        "message": "Contact@taraxa.io."
+    },
+    {
+        "name": "M O",
+        "date": "22 Apr 2024 at 07:08:15",
+        "message": "Admin there? I think the romanians are the best at coding"
+    },
+    {
+        "name": "0xReno (NEVER DM YOU)",
+        "date": "22 Apr 2024 at 07:37:06",
+        "message": "Yes."
+    },
+    {
+        "name": "AL Dee",
+        "date": "22 Apr 2024 at 10:11:01",
+        "message": "When bybit sir?"
+    },
+    {
+        "name": "Nova",
+        "date": "22 Apr 2024 at 10:18:34",
+        "message": "Anyone using hype and echo?"
+    }
+]
