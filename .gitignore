@@ -3,3 +3,4 @@ node_modules
 .idea
 .DS_Store
 core/data/conversation.txt
+ui/.svelte-kit
