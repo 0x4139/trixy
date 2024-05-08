@@ -95,7 +95,9 @@
           </div>
         </td>
         <td>
-          <ApexCharts options={getSparkLine(coin.sparkLine7days, coin.dailyChange > 0 ? $appVariables.color.theme : $appVariables.color.danger)}></ApexCharts>
+          {#if $appVariables.length > 0}
+            <ApexCharts options={getSparkLine(coin.sparkLine7days, coin.dailyChange > 0 ? $appVariables.color.theme : $appVariables.color.danger)}></ApexCharts>
+          {/if}
         </td>
       </tr>
     {/each}
