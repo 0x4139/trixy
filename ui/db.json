@@ -1,25 +1,71 @@
 {
-  "communityMessages": {
-    "id": 1,
-    "title": "COMMUNITY MESSAGES",
-    "total": 4200000,
-    "weekChangePercentage": 13.8,
-    "newUsersPercentage": 5,
-    "messagesPerHour": 13,
-    "chartData": [
-      45,
-      38,
-      32,
-      51,
-      42,
-      49,
-      40,
-      35,
-      48,
-      52,
-      55,
-      47,
-      42
-    ]
+  "stats": {
+    "communityMessages": {
+      "id": 1,
+      "total": 4200000,
+      "weekChangePercentage": 13.8,
+      "newUsersPercentage": 5,
+      "messagesPerHour": 13,
+      "chartData": [
+        45,
+        38,
+        32,
+        51,
+        42,
+        49,
+        40,
+        35,
+        48,
+        52,
+        55,
+        47,
+        42
+      ]
+    },
+    "marketData": {
+      "price": 0.01005972,
+      "changePercentage": -2,
+      "tradingVolume": 20000,
+      "spread": -0.6532,
+      "chartData": [
+        100,
+        102,
+        101,
+        103,
+        102,
+        104,
+        105,
+        104,
+        103,
+        102,
+        101,
+        102,
+        100
+      ]
+    },
+    "sentimentAnalysis": {
+      "total": 3000,
+      "weekChangePercentage": -1.5,
+      "totalEmotions": 1500,
+      "sentimentChangePercentage": 2.6,
+      "pieChartData": {
+        "positive": 45,
+        "neutral": 20,
+        "negative": 35
+      }
+    },
+    "topics": {
+      "total": 150,
+      "weekChangePercentage": 3.5,
+      "totalTopics": 75,
+      "topicsLast24h": 10,
+      "pieChartData": [
+        20,
+        30,
+        25,
+        15,
+        10
+      ]
+    }
   }
 }

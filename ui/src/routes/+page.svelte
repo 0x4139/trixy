@@ -1,6 +1,6 @@
 <script>
     import { onMount, onDestroy } from "svelte";
-    import { setPageTitle, formatNumberWithK, formatPercentageChange, insertChevronIconBasedOnValue } from "$lib/utils";
+    import { setPageTitle, formatNumberWithK, formatPercentageChange, insertChevronIconBasedOnValue, getChartColorsArray } from "$lib/utils";
     import { appVariables } from "/src/stores/appVariables.js";
     import Card from "/src/components/bootstrap/Card.svelte";
     import CardBody from "/src/components/bootstrap/CardBody.svelte";
@@ -21,8 +21,13 @@
     let logData;
     let unsubscribe;
 
-    $: console.log("community messages = ", $page.data.communityMessages)
-    $: communityMessages = $page.data.communityMessages
+    $: ({communityMessages, marketData, sentimentAnalysis, topics} = $page.data.stats)
+
+    //$: communityMessages = $page.data.stats.communityMessages
+    //$: marketData = $page.data.stats.marketData
+    //$: sentimentAnalysis = $page.data.stats.sentimentAnalysis
+
+    //$: console.log("community messages = ", communityMessages)
 
     function generateBubbleChartData(baseval, count, yrange) {
         var i = 0;
@@ -94,19 +99,19 @@
             {
                 size: 6,
                 title: "MARKET DATA",
-                total: "$0.01005972",
+                total: '$'+marketData.price,
                 info: [
                     {
-                        icon: "fa fa-chevron-up fa-fw me-1",
-                        text: "+1.9%",
+                        icon: insertChevronIconBasedOnValue(marketData.changePercentage),
+                        text: formatPercentageChange(marketData.changePercentage) + " a day ago", //TODO: decide period of time
                     },
                     {
                         icon: "fa fa-balance-scale fa-fw me-1",
-                        text: "$580,351 trading volume",
+                        text: '$'+marketData.tradingVolume.toLocaleString()+" trading volume",
                     },
                     {
                         icon: "fa fa-align-justify fa-fw me-1",
-                        text: "$-0.001289 spread",
+                        text: '$'+marketData.spread+" spread",
                     },
                 ],
                 chartOptions: {
@@ -120,21 +125,7 @@
                     series: [
                         {
                             name: "Price",
-                            data: [
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                            ],
+                            data: marketData.chartData,
                         },
                     ],
                 },
@@ -142,19 +133,19 @@
             {
                 size: 6,
                 title: "SENTIMENT ANALYSIS",
-                total: "4,490",
+                total: formatNumberWithK(sentimentAnalysis.total),
                 info: [
                     {
-                        icon: "fa fa-chevron-up fa-fw me-1",
-                        text: "29.5% more than last week",
+                        icon: insertChevronIconBasedOnValue(sentimentAnalysis.weekChangePercentage),
+                        text: formatPercentageChange(sentimentAnalysis.weekChangePercentage) + " last week",
                     },
                     {
                         icon: "fas fa-compass fa-fw me-1",
-                        text: "45 total emotions",
+                        text: sentimentAnalysis.totalEmotions.toLocaleString() + " total emotions",
                     },
                     {
                         icon: "fas fa-chart-line fa-fw me-1",
-                        text: "15.25% sentiment change",
+                        text: sentimentAnalysis.sentimentChangePercentage + "% sentiment change",
                     },
                 ],
                 chartClass: "mb-n2",
@@ -164,32 +155,28 @@
                         type: "pie",
                         sparkline: { enabled: true },
                     },
-                    colors: [
-                        "rgba(" + appVariables.color.themeRgb + ", 1)",
-                        "rgba(" + appVariables.color.themeRgb + ", .75)",
-                        "rgba(" + appVariables.color.themeRgb + ", .5)",
-                    ],
+                    colors: getChartColorsArray(appVariables, [sentimentAnalysis.pieChartData.positive, sentimentAnalysis.pieChartData.negative, sentimentAnalysis.pieChartData.neutral]),
                     stroke: { show: false },
                     labels: ["Positive", "Negative", "Neutral"],
-                    series: [randomNo(), randomNo(), randomNo()],
+                    series: [sentimentAnalysis.pieChartData.positive, sentimentAnalysis.pieChartData.negative, sentimentAnalysis.pieChartData.neutral],
                 },
             },
             {
                 size: 6,
                 title: "TOPICS",
-                total: "5",
+                total: topics.total.toLocaleString(),
                 info: [
                     {
-                        icon: "fa fa-chevron-up fa-fw me-1",
-                        text: "2% more than last week",
+                        icon: insertChevronIconBasedOnValue(topics.weekChangePercentage),
+                        text: formatPercentageChange(topics.weekChangePercentage) + " last week",
                     },
                     {
                         icon: "far fa-hdd fa-fw me-1",
-                        text: "1050 total topics",
+                        text: topics.totalTopics + " total topics",
                     },
                     {
                         icon: "fas fa-tasks fa-fw me-1",
-                        text: "2 new topics in 24h",
+                        text: topics.topicsLast24h + " new topics in 24h",
                     },
                 ],
                 chartClass: "mb-n2",
@@ -199,13 +186,7 @@
                         type: "donut",
                         sparkline: { enabled: true },
                     },
-                    colors: [
-                        "rgba(" + appVariables.color.themeRgb + ", .15)",
-                        "rgba(" + appVariables.color.themeRgb + ", .35)",
-                        "rgba(" + appVariables.color.themeRgb + ", .55)",
-                        "rgba(" + appVariables.color.themeRgb + ", .75)",
-                        "rgba(" + appVariables.color.themeRgb + ", .95)",
-                    ],
+                    colors: getChartColorsArray(appVariables, topics.pieChartData),
                     stroke: {
                         show: false,
                         curve: "smooth",
@@ -218,13 +199,7 @@
                     plotOptions: {
                         pie: { donut: { background: "transparent" } },
                     },
-                    series: [
-                        randomNo(),
-                        randomNo(),
-                        randomNo(),
-                        randomNo(),
-                        randomNo(),
-                    ],
+                    series: topics.pieChartData,
                 },
             },
             {
