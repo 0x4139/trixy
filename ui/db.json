@@ -2,9 +2,9 @@
   "communityMessages": {
     "id": 1,
     "title": "COMMUNITY MESSAGES",
-    "total": "4.2m",
-    "weekChangePercentage": 13.3,
-    "newVisitorsPercentage": 0.5,
+    "total": 4200000,
+    "weekChangePercentage": 13.8,
+    "newUsersPercentage": 5,
     "messagesPerHour": 13,
     "chartData": [
       45,

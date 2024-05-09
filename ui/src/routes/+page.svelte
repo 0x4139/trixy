@@ -1,6 +1,6 @@
 <script>
     import { onMount, onDestroy } from "svelte";
-    import { setPageTitle } from "$lib/utils";
+    import { setPageTitle, formatNumberWithK, formatPercentageChange, insertChevronIconBasedOnValue } from "$lib/utils";
     import { appVariables } from "/src/stores/appVariables.js";
     import Card from "/src/components/bootstrap/Card.svelte";
     import CardBody from "/src/components/bootstrap/CardBody.svelte";
@@ -22,6 +22,7 @@
     let unsubscribe;
 
     $: console.log("community messages = ", $page.data.communityMessages)
+    $: communityMessages = $page.data.communityMessages
 
     function generateBubbleChartData(baseval, count, yrange) {
         var i = 0;
@@ -53,19 +54,19 @@
             {
                 size: 6,
                 title: "COMMUNITY MESSAGES",
-                total: $page.data.communityMessages.total,
+                total: formatNumberWithK(communityMessages.total),
                 info: [
                     {
-                        icon: "fa fa-chevron-up fa-fw me-1",
-                        text: "13.3% more than last week",
+                        icon: insertChevronIconBasedOnValue(communityMessages.weekChangePercentage),
+                        text: formatPercentageChange(communityMessages.weekChangePercentage)+ " last week",
                     },
                     {
                         icon: "far fa-user fa-fw me-1",
-                        text: "0.5% new visitors",
+                        text: communityMessages.newUsersPercentage + " new visitors",
                     },
                     {
                         icon: "far fa-clock fa-fw me-1",
-                        text: "13 messages per hour",
+                        text: communityMessages.messagesPerHour + " messages per hour",
                     },
                 ],
                 chartOptions: {
@@ -85,21 +86,7 @@
                     series: [
                         {
                             name: "Messages",
-                            data: [
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                                randomNo(),
-                            ],
+                            data: communityMessages.chartData,
                         },
                     ],
                 },
