@@ -21,13 +21,7 @@
     let logData;
     let unsubscribe;
 
-    $: ({communityMessages, marketData, sentimentAnalysis, topics} = $page.data.stats)
-
-    //$: communityMessages = $page.data.stats.communityMessages
-    //$: marketData = $page.data.stats.marketData
-    //$: sentimentAnalysis = $page.data.stats.sentimentAnalysis
-
-    //$: console.log("community messages = ", communityMessages)
+    $: ({communityMessages, marketData, sentimentAnalysis, topics, kolTracking} = $page.data.stats)
 
     function generateBubbleChartData(baseval, count, yrange) {
         var i = 0;
@@ -43,6 +37,7 @@
             baseval += 86400000;
             i++;
         }
+        console.log("series = ",series);
         return series;
     }
 
@@ -209,31 +204,25 @@
                     right: 8,
                 },
                 title: "KOL Tracking",
-                total: "3.1k MESSAGES",
+                total: formatNumberWithK(kolTracking.totalMessages) + " MESSAGES",
                 info: [
                     {
-                        icon: "fa fa-chevron-up fa-fw me-1",
-                        text: "+5.3%",
+                        icon: insertChevronIconBasedOnValue(kolTracking.weekChangePercentage),
+                        text: formatPercentageChange(kolTracking.weekChangePercentage) + " last week",
                     },
                     {
                         icon: "fas fa-thermometer-empty fa-fw me-1",
-                        text: "10.5% from total community",
+                        text: kolTracking.percentOfTotalCommunity + "% of total community",
                     },
                     {
                         icon: "fas fa-users fa-fw me-1",
-                        text: "635 total users",
+                        text: kolTracking.totalUsers + " total users",
                     },
                 ],
                 chartClass: "mb-n2",
                 chartOptions: {
                     chart: { height: "270px", type: "bubble" },
-                    colors: [
-                        "rgba(" + appVariables.color.themeRgb + ", .15)",
-                        "rgba(" + appVariables.color.themeRgb + ", .35)",
-                        "rgba(" + appVariables.color.themeRgb + ", .55)",
-                        "rgba(" + appVariables.color.themeRgb + ", .75)",
-                        "rgba(" + appVariables.color.themeRgb + ", .95)",
-                    ],
+                    colors: getChartColorsArray(appVariables, kolTracking.chartData.map((user)=>user.data.positiveSentimentPercentage)),
                     stroke: {
                         show: false,
                         curve: "smooth",
@@ -246,41 +235,8 @@
                     dataLabels: { enabled: false },
                     fill: { opacity: 0.8 },
                     xaxis: { tickAmount: 8, type: "category" },
-                    yaxis: { max: 70 },
-                    series: [
-                        {
-                            name: "kingxy007",
-                            data: generateBubbleChartData(
-                                new Date("2 May 2022 GMT").getTime(),
-                                20,
-                                { min: 10, max: 60 },
-                            ),
-                        },
-                        {
-                            name: "Joneya",
-                            data: generateBubbleChartData(
-                                new Date("2 May 2022 GMT").getTime(),
-                                20,
-                                { min: 10, max: 60 },
-                            ),
-                        },
-                        {
-                            name: "KlayCrypt",
-                            data: generateBubbleChartData(
-                                new Date("2 May 2022 GMT").getTime(),
-                                20,
-                                { min: 10, max: 60 },
-                            ),
-                        },
-                        {
-                            name: "justhodlitright",
-                            data: generateBubbleChartData(
-                                new Date("11 Feb 2022 GMT").getTime(),
-                                20,
-                                { min: 10, max: 60 },
-                            ),
-                        },
-                    ],
+                    yaxis: { min:0, max: 1.2 * Math.max(...kolTracking.chartData.map(item => item.data.influenceScore)) },
+                    series: (kolTracking.chartData.map((userChartData)=>({ name: userChartData.name, data: [[userChartData.data.messagesSent, userChartData.data.influenceScore, userChartData.data.marketMovementCorrelations]]})))
                 },
             },
         ];

@@ -11,5 +11,6 @@
         "parser": "svelte"
       }
     }
-  ]
+  ],
+  "printWidth": 90
 }

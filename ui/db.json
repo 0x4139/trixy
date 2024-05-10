@@ -66,6 +66,50 @@
         15,
         10
       ]
+    },
+    "kolTracking": {
+      "totalMessages": 3100,
+      "weekChangePercentage": -10.5,
+      "percentOfTotalCommunity": 40.2,
+      "totalUsers": 635,
+      "chartData": [
+        {
+          "name": "user_1",
+          "data": {
+            "messagesSent": 720,
+            "influenceScore": 84,
+            "positiveSentimentPercentage": 68,
+            "marketMovementCorrelations": 8
+          }
+        },
+        {
+          "name": "user_2",
+          "data": {
+            "messagesSent": 600,
+            "influenceScore": 72,
+            "positiveSentimentPercentage": 74,
+            "marketMovementCorrelations": 6
+          }
+        },
+        {
+          "name": "user_3",
+          "data": {
+            "messagesSent": 650,
+            "influenceScore": 90,
+            "positiveSentimentPercentage": 79,
+            "marketMovementCorrelations": 12
+          }
+        },
+        {
+          "name": "user_4",
+          "data": {
+            "messagesSent": 540,
+            "influenceScore": 81,
+            "positiveSentimentPercentage": 64,
+            "marketMovementCorrelations": 9
+          }
+        }
+      ]
     }
   }
 }
