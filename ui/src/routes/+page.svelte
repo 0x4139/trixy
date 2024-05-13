@@ -16,32 +16,13 @@
     let statsData;
     let serverData;
     let trafficData;
-    let productData;
     let jsVectormap;
     let logData;
     let unsubscribe;
 
     $: ({communityMessages, marketData, sentimentAnalysis, topics, kolTracking} = $page.data.stats)
     $: chartPatternDetection = $page.data.chartPatternDetection;
-    $: productData = $page.data.productData;
-
-    function generateBubbleChartData(baseval, count, yrange) {
-        var i = 0;
-        var series = [];
-        while (i < count) {
-            var x = Math.floor(Math.random() * (750 - 1 + 1)) + 1;
-            var y =
-                Math.floor(Math.random() * (yrange.max - yrange.min + 1)) +
-                yrange.min;
-            var z = Math.floor(Math.random() * (75 - 15 + 1)) + 15;
-
-            series.push([x, y, z]);
-            baseval += 86400000;
-            i++;
-        }
-        console.log("series = ",series);
-        return series;
-    }
+    $: marketPatterns = $page.data.marketPatterns;
 
     function randomNo() {
         return Math.floor(Math.random() * 60) + 30;
@@ -976,14 +957,14 @@
         <Card class="mb-3">
             <CardBody>
                 <div class="d-flex fw-bold small mb-3">
-                    <span class="flex-grow-1">TOP PRODUCTS</span>
+                    <span class="flex-grow-1">MARKET PATTERNS</span>
                     <CardExpandToggler />
                 </div>
                 <div class="table-responsive">
                     <table class="w-100 mb-0 small align-content-end text-wrap">
                         <tbody>
-                            {#if productData}
-                                {#each productData as product}
+                            {#if marketPatterns}
+                                {#each marketPatterns as pattern}
                                     <tr>
                                         <td>
                                             <table
@@ -994,7 +975,7 @@
                                                     <td class="pe-3">TREND:</td>
                                                     <td
                                                         class="text-inverse text-opacity-75 fw-500"
-                                                        >{product.trend}</td
+                                                        >{pattern.trend}</td
                                                     >
                                                 </tr>
                                                 <tr>
@@ -1002,7 +983,7 @@
                                                     >
                                                     <td
                                                         class="text-inverse text-opacity-75 fw-500"
-                                                        >{product.action}</td
+                                                        >{pattern.action}</td
                                                     >
                                                 </tr>
                                                 <tr>
@@ -1011,7 +992,7 @@
                                                     >
                                                     <td
                                                         class="text-inverse text-opacity-75 fw-500"
-                                                        >{product.date}</td
+                                                        >{pattern.date}</td
                                                     >
                                                 </tr>
                                             </table>
@@ -1021,20 +1002,20 @@
                                                 <div class="flex-1 ps-3">
                                                     <div class="mb-1">
                                                         <small
-                                                            class="fs-9px fw-500 lh-1 d-inline-block rounded-0 badge {product.type ===
+                                                            class="fs-9px fw-500 lh-1 d-inline-block rounded-0 badge {pattern.type ===
                                                             'bullish'
                                                                 ? 'bg-theme text-theme-900'
                                                                 : 'bg-inverse bg-opacity-25'}  pt-5px text-uppercase"
-                                                            >{product.type}</small
+                                                            >{pattern.type}</small
                                                         >
                                                     </div>
                                                     <div
                                                         class="fw-500 text-inverse"
                                                     >
-                                                        {product.title}
+                                                        {pattern.title}
                                                     </div>
                                                     <span
-                                                        >{product.description}</span
+                                                        >{pattern.description}</span
                                                     >
                                                 </div>
                                             </div>

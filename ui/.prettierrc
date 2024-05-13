@@ -1,6 +1,4 @@
-// .prettierrc
 {
-  // ..
   "plugins": [
     "prettier-plugin-svelte"
   ],
