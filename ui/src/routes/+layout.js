@@ -4,9 +4,10 @@ async function fetchAndParse(fetch, url) {
 }
 
 export async function load({fetch}) {
-    const trendingCoins = await fetchAndParse(fetch, "api/trendingCoins");
+    const trendingCoins = await fetchAndParse(fetch, "api/trending-coins");
     const stats = await fetchAndParse(fetch, "api/stats");
-    const chartPatternDetection = await fetchAndParse(fetch, "api/chartPatternDetection");
+    const chartPatternDetection = await fetchAndParse(fetch, "api/chart-pattern-detection");
+    const productData = await fetchAndParse(fetch, "api/product-data");
 
-    return {trendingCoins, stats, chartPatternDetection};
+    return {trendingCoins, stats, chartPatternDetection, productData};
 }

@@ -23,6 +23,7 @@
 
     $: ({communityMessages, marketData, sentimentAnalysis, topics, kolTracking} = $page.data.stats)
     $: chartPatternDetection = $page.data.chartPatternDetection;
+    $: productData = $page.data.productData;
 
     function generateBubbleChartData(baseval, count, yrange) {
         var i = 0;
@@ -535,98 +536,7 @@
 
         jsVectormap = await import("jsvectormap");
         await import("jsvectormap/dist/maps/world.js");
-        productData = [
-            {
-                type: "bullish",
-                title: "Bullish Engulfing Pattern",
-                trend: "down trend",
-                date: "2024-05-02",
-                confidence: "150 of 200",
-                action: "buy",
-                description:
-                    "A bullish engulfing pattern indicating a potential reversal of the current downtrend.",
-            },
-            {
-                type: "bearish",
-                title: "Bearish Engulfing Pattern",
-                trend: "up trend",
-                date: "2024-05-01",
-                confidence: "170 of 200",
-                action: "sell",
-                description:
-                    "A bearish engulfing pattern suggesting a possible end to the recent uptrend.",
-            },
-            {
-                type: "bearish",
-                title: "Three Black Crows",
-                trend: "up trend",
-                date: "2024-04-30",
-                confidence: "180 of 200",
-                action: "sell",
-                description:
-                    "Three consecutive long red candles with little to no lower shadows indicate a strong downturn.",
-            },
-            {
-                type: "bullish",
-                title: "Morning Star",
-                trend: "down trend",
-                date: "2024-04-29",
-                confidence: "160 of 200",
-                action: "buy",
-                description:
-                    "A morning star pattern, typically a sign of a reversal to an uptrend.",
-            },
-            {
-                type: "bullish",
-                title: "Bullish Hammer",
-                trend: "down trend",
-                date: "2024-04-28",
-                confidence: "140 of 200",
-                action: "buy",
-                description:
-                    "A small body near the top with a long lower shadow indicates a potential upward reversal.",
-            },
-            {
-                type: "bearish",
-                title: "Hanging Man",
-                trend: "up trend",
-                date: "2024-04-27",
-                confidence: "135 of 200",
-                action: "sell",
-                description:
-                    "A bearish reversal pattern that occurs at the end of an uptrend.",
-            },
-            {
-                type: "neutral",
-                title: "Doji",
-                trend: "uncertain",
-                date: "2024-04-26",
-                confidence: "100 of 200",
-                action: "watch",
-                description:
-                    "A Doji represents indecision in the market, with opening and closing prices essentially equal.",
-            },
-            {
-                type: "bearish",
-                title: "Shooting Star",
-                trend: "up trend",
-                date: "2024-04-25",
-                confidence: "155 of 200",
-                action: "sell",
-                description:
-                    "A shooting star pattern after an uptrend suggests a bearish reversal.",
-            },
-            {
-                type: "bullish",
-                title: "Piercing Line",
-                trend: "down trend",
-                date: "2024-04-24",
-                confidence: "145 of 200",
-                action: "buy",
-                description:
-                    "A bullish reversal pattern where the second day’s candle covers more than half of the previous day's candle body.",
-            },
-        ];
+
 
         logData = [
             {
