@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function setPageTitle(title) {
     document.title = `TRIXY | ${title}`;
 }
@@ -40,4 +42,8 @@ export function insertChevronIconBasedOnValue(number) {
     } else {
         return "";
     }
+}
+
+export function getTimeAgo(datetime) {
+    return moment(datetime).fromNow();
 }

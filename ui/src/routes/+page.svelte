@@ -1,6 +1,6 @@
 <script>
     import { onMount, onDestroy } from "svelte";
-    import { setPageTitle, formatNumberWithK, formatPercentageChange, insertChevronIconBasedOnValue, getChartColorsArray } from "$lib/utils";
+    import { setPageTitle, formatNumberWithK, formatPercentageChange, insertChevronIconBasedOnValue, getChartColorsArray, getTimeAgo } from "$lib/utils";
     import { appVariables } from "/src/stores/appVariables.js";
     import Card from "/src/components/bootstrap/Card.svelte";
     import CardBody from "/src/components/bootstrap/CardBody.svelte";
@@ -22,6 +22,7 @@
     let unsubscribe;
 
     $: ({communityMessages, marketData, sentimentAnalysis, topics, kolTracking} = $page.data.stats)
+    $: chartPatternDetection = $page.data.chartPatternDetection;
 
     function generateBubbleChartData(baseval, count, yrange) {
         var i = 0;
@@ -203,7 +204,7 @@
                     left: 4,
                     right: 8,
                 },
-                title: "KOL Tracking",
+                title: "KOL TRACKING",
                 total: formatNumberWithK(kolTracking.totalMessages) + " MESSAGES",
                 info: [
                     {
@@ -247,64 +248,7 @@
             chartOptions: {
                 series: [
                     {
-                        data: [
-                            {
-                                x: new Date(1538778600000),
-                                y: [6629.81, 6650.5, 6623.04, 6633.33],
-                            },
-                            {
-                                x: new Date(1538780400000),
-                                y: [6632.01, 6643.59, 6620, 6630.11],
-                            },
-                            {
-                                x: new Date(1538782200000),
-                                y: [6630.71, 6648.95, 6623.34, 6635.65],
-                            },
-                            {
-                                x: new Date(1538784000000),
-                                y: [6635.65, 6651, 6629.67, 6638.24],
-                            },
-                            {
-                                x: new Date(1538785800000),
-                                y: [6638.24, 6640, 6620, 6624.47],
-                            },
-                            {
-                                x: new Date(1538787600000),
-                                y: [6624.53, 6636.03, 6621.68, 6624.31],
-                            },
-                            {
-                                x: new Date(1538789400000),
-                                y: [6624.61, 6632.2, 6617, 6626.02],
-                            },
-                            {
-                                x: new Date(1538791200000),
-                                y: [6627, 6627.62, 6584.22, 6603.02],
-                            },
-                            {
-                                x: new Date(1538793000000),
-                                y: [6605, 6608.03, 6598.95, 6604.01],
-                            },
-                            {
-                                x: new Date(1538794800000),
-                                y: [6604.5, 6614.4, 6602.26, 6608.02],
-                            },
-                            {
-                                x: new Date(1538796600000),
-                                y: [6608.02, 6610.68, 6601.99, 6608.91],
-                            },
-                            {
-                                x: new Date(1538798400000),
-                                y: [6608.91, 6618.99, 6608.01, 6612],
-                            },
-                            {
-                                x: new Date(1538800200000),
-                                y: [6612, 6615.13, 6605.09, 6612],
-                            },
-                            {
-                                x: new Date(1538884800000),
-                                y: [6604.98, 6606, 6604.07, 6606],
-                            },
-                        ],
+                        data: chartPatternDetection.chartData,
                     },
                 ],
                 colors: [
@@ -348,23 +292,23 @@
             stats: [
                 {
                     name: "DETECTED PATTERNS",
-                    total: "204 / 210 Ticks",
-                    progress: "93%",
-                    time: "Last updated 24h ago",
+                    total: chartPatternDetection.detectedPatterns.detectedTicks + " / " + chartPatternDetection.detectedPatterns.totalTicks + " Ticks",
+                    progress: chartPatternDetection.detectedPatterns.detectedTicks / chartPatternDetection.detectedPatterns.totalTicks * 100 +"%",
+                    time: "Last updated "+ getTimeAgo(chartPatternDetection.detectedPatterns.lastUpdateTime),
                     info: [
                         {
                             title: "BULLISH",
-                            value: "195",
+                            value: chartPatternDetection.detectedPatterns.bullish,
                             class: "text-theme",
                         },
                         {
                             title: "BEARISH",
-                            value: "120",
+                            value: chartPatternDetection.detectedPatterns.bearish,
                             class: "text-theme text-opacity-50",
                         },
                         {
                             title: "NEUTRAL",
-                            value: "20",
+                            value: chartPatternDetection.detectedPatterns.neutral,
                             class: "text-theme text-opacity-50",
                         },
                     ],
@@ -376,9 +320,9 @@
                         },
                         colors: [
                             "rgba(" + appVariables.color.themeRgb + ", .15)",
-                            "rgba(" + appVariables.color.themeRgb + ", .35)",
+
                             "rgba(" + appVariables.color.themeRgb + ", .55)",
-                            "rgba(" + appVariables.color.themeRgb + ", .75)",
+
                             "rgba(" + appVariables.color.themeRgb + ", .95)",
                         ],
                         stroke: {
@@ -395,28 +339,28 @@
                         plotOptions: {
                             pie: { donut: { background: "transparent" } },
                         },
-                        series: [randomNo(), randomNo(), randomNo()],
+                        series: [chartPatternDetection.detectedPatterns.bearish, chartPatternDetection.detectedPatterns.neutral, chartPatternDetection.detectedPatterns.bullish],
                     },
                 },
                 {
                     name: "CONFIRMED PATTERNS",
-                    total: "183 / 204 Total",
-                    progress: "89%",
-                    time: "Last updated 15 min ago",
+                    total: chartPatternDetection.confirmedPatterns.confirmed + " / " + chartPatternDetection.confirmedPatterns.total + " Total",
+                    progress: chartPatternDetection.confirmedPatterns.confirmed / chartPatternDetection.confirmedPatterns.total * 100 + "%",
+                    time: "Last updated " + getTimeAgo(chartPatternDetection.confirmedPatterns.lastUpdateTime),
                     info: [
                         {
                             title: "BULLISH",
-                            value: "88%",
+                            value: chartPatternDetection.confirmedPatterns.bullish + "%",
                             class: "text-theme",
                         },
                         {
                             title: "BEARISH",
-                            value: "91%",
+                            value: chartPatternDetection.confirmedPatterns.bearish + "%",
                             class: "text-theme text-opacity-50",
                         },
                         {
                             title: "NEUTRAL",
-                            value: "91%",
+                            value: chartPatternDetection.confirmedPatterns.neutral + "%",
                             class: "text-theme text-opacity-50",
                         },
                     ],
@@ -428,9 +372,9 @@
                         },
                         colors: [
                             "rgba(" + appVariables.color.themeRgb + ", .15)",
-                            "rgba(" + appVariables.color.themeRgb + ", .35)",
+
                             "rgba(" + appVariables.color.themeRgb + ", .55)",
-                            "rgba(" + appVariables.color.themeRgb + ", .75)",
+
                             "rgba(" + appVariables.color.themeRgb + ", .95)",
                         ],
                         stroke: {
@@ -447,13 +391,7 @@
                         plotOptions: {
                             pie: { donut: { background: "transparent" } },
                         },
-                        series: [
-                            randomNo(),
-                            randomNo(),
-                            randomNo(),
-                            randomNo(),
-                            randomNo(),
-                        ],
+                        series: [chartPatternDetection.confirmedPatterns.bearish, chartPatternDetection.confirmedPatterns.neutral, chartPatternDetection.confirmedPatterns.bullish],
                     },
                 },
             ],
@@ -953,7 +891,7 @@
         <Card class="mb-3">
             <CardBody>
                 <div class="d-flex fw-bold small mb-3">
-                    <span class="flex-grow-1">Chart Pattern Detection</span>
+                    <span class="flex-grow-1">CHART PATTERN DETECTION</span>
                     <CardExpandToggler />
                 </div>
                 <div class="ratio ratio-21x9 mb-3">

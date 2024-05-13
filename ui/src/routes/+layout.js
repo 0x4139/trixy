@@ -6,6 +6,7 @@ async function fetchAndParse(fetch, url) {
 export async function load({fetch}) {
     const trendingCoins = await fetchAndParse(fetch, "api/trendingCoins");
     const stats = await fetchAndParse(fetch, "api/stats");
+    const chartPatternDetection = await fetchAndParse(fetch, "api/chartPatternDetection");
 
-    return {trendingCoins, stats};
+    return {trendingCoins, stats, chartPatternDetection};
 }
