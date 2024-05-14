@@ -18,6 +18,7 @@ export function generateVariables() {
         .trim(),
     },
     color: {
+      theme: getComputedStyle(document.body).getPropertyValue("--bs-theme").trim(),
       themeRgb: getComputedStyle(document.body).getPropertyValue("--bs-theme-rgb").trim(),
       themeColor: getComputedStyle(document.body)
         .getPropertyValue("--bs-theme-color")
