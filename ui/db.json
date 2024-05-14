@@ -475,5 +475,17 @@
         "percent": 5
       }
     ]
+  },
+  "chat": {
+    "messages": [
+      {
+        "from": "user",
+        "content": "Hello!"
+      },
+      {
+        "from": "TRIXY",
+        "content": "Hello! How can I help you today?"
+      }
+    ]
   }
 }

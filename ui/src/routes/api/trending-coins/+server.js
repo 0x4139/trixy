@@ -21,7 +21,7 @@ export async function GET({ fetch }) {
 
   const result = await response.json();
 
-  console.log("first coin=", result.coins[0]);
+  //console.log("first coin=", result.coins[0]);
 
   const trendingCoins = result.coins.map((coin) => ({
     is_coin: true,

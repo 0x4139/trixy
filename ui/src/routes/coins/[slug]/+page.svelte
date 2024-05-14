@@ -15,9 +15,11 @@
   import CardFooter from "/src/components/bootstrap/CardFooter.svelte";
   import CardExpandToggler from "/src/components/bootstrap/CardExpandToggler.svelte";
   import PerfectScrollbar from "/src/components/plugins/PerfectScrollbar.svelte";
+  import Chat from "./components/Chat.svelte";
   import ApexCharts from "/src/components/plugins/ApexCharts.svelte";
   import "jsvectormap/dist/css/jsvectormap.min.css";
   import moment from "moment";
+  import { enhance } from "$app/forms";
   import { availableCoins } from "../../../stores/appSearchCoins.js";
   import { page } from "$app/stores";
 
@@ -36,6 +38,10 @@
   $: currentCoin = getCurrentCoin(trendingCoins);
   $: logs = $page.data.logs;
   $: trafficData = $page.data.trafficData;
+
+  export let form;
+  $: messages = form?.messages;
+  $: console.log("messages = ", messages);
 
   function randomNo() {
     return Math.floor(Math.random() * 60) + 30;
@@ -737,12 +743,18 @@
           </CardBody>
         </PerfectScrollbar>
         <CardFooter class="bg-none">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for..." />
-            <button class="btn btn-outline-default" type="button"
+          <form action="?/completion" method="POST" use:enhance class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              name="userInput"
+              placeholder="Search for..."
+            />
+            <input type="hidden" name="coin" value={currentCoin.id} />
+            <button class="btn btn-outline-default" type="submit"
               ><i class="fa fa-paper-plane text-muted"></i>
             </button>
-          </div>
+          </form>
         </CardFooter>
       </Card>
     </div>
