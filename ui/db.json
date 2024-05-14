@@ -424,5 +424,56 @@
         "highlight": true
       }
     ]
+  },
+  "traffic-data": {
+    "countries": [
+      {
+        "name": "FRANCE",
+        "messages": 13849,
+        "percent": 40.79
+      },
+      {
+        "name": "GERMANY",
+        "messages": 10349,
+        "percent": 30.79
+      },
+      {
+        "name": "UK",
+        "messages": 8349,
+        "percent": 20.79
+      },
+      {
+        "name": "USA",
+        "messages": 7349,
+        "percent": 10.79
+      },
+      {
+        "name": "JAPAN",
+        "messages": 6349,
+        "percent": 5.79
+      }
+    ],
+    "sentiments": [
+      {
+        "name": "NEUTRAL",
+        "percent": 40
+      },
+      {
+        "name": "POSITIVE",
+        "percent": 30
+      },
+      {
+        "name": "DISAPPOINTMENT",
+        "percent": 20
+      },
+      {
+        "name": "INQUIRY",
+        "percent": 5
+      },
+      {
+        "name": "CURIOSITY",
+        "percent": 5
+      }
+    ]
   }
 }

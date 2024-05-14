@@ -25,6 +25,14 @@ export async function load({ fetch, params }) {
   const marketPatterns = marketPatternsData.list;
   const logsData = await fetchAndParse(fetch, `/api/logs?coin=${params.slug}`);
   const logs = logsData.list;
+  const trafficData = await fetchAndParse(fetch, `/api/traffic-data?coin=${params.slug}`);
 
-  return { trendingCoins, stats, chartPatternDetection, marketPatterns, logs };
+  return {
+    trendingCoins,
+    stats,
+    chartPatternDetection,
+    marketPatterns,
+    logs,
+    trafficData,
+  };
 }

@@ -34,6 +34,7 @@
   $: trendingCoins = $page.data.trendingCoins;
   $: currentCoin = getCurrentCoin(trendingCoins);
   $: logs = $page.data.logs;
+  $: trafficData = $page.data.trafficData;
 
   function randomNo() {
     return Math.floor(Math.random() * 60) + 30;
@@ -441,48 +442,32 @@
 
   function getTrafficData(appVariables) {
     trafficData = {
-      country: [
-        { name: "FRANCE", visits: "13,849", pct: "40.79%", class: "" },
-        { name: "SPAIN", visits: "3,216", pct: "9.79%", class: "" },
-        {
-          name: "MEXICO",
-          visits: "1,398",
-          pct: "4.26%",
-          class: "fw-bold text-theme",
-        },
-        {
-          name: "UNITED STATES",
-          visits: "1,090",
-          pct: "3.32%",
-          class: "",
-        },
-        { name: "BELGIUM", visits: "1,045", pct: "3.18%", class: "" },
-      ],
+      country: trafficData.countries,
       source: [
         {
-          name: "NEUTRAL",
-          percentage: "25.70%",
-          class: "bg-theme bg-opacity-95",
+          name: trafficData.sentiments[0].name,
+          percentage: trafficData.sentiments[0].percent + "%",
+          class: "bg-mapNeutral",
         },
         {
-          name: "POSITIVE",
-          percentage: "24.30%",
-          class: "bg-theme bg-opacity-75",
+          name: trafficData.sentiments[1].name,
+          percentage: trafficData.sentiments[1].percent + "%",
+          class: "bg-mapPositive",
         },
         {
-          name: "DISAPPOINTMENT",
-          percentage: "23.05%",
-          class: "bg-theme bg-opacity-55",
+          name: trafficData.sentiments[2].name,
+          percentage: trafficData.sentiments[2].percent + "%",
+          class: "bg-mapDisappointment",
         },
         {
-          name: "INQUIRY",
-          percentage: "14.85%",
-          class: "bg-theme bg-opacity-35",
+          name: trafficData.sentiments[3].name,
+          percentage: trafficData.sentiments[3].percent + "%",
+          class: "bg-mapInquiry",
         },
         {
-          name: "CURIOSITY",
-          percentage: "7.35%",
-          class: "bg-theme bg-opacity-15",
+          name: trafficData.sentiments[4].name,
+          percentage: trafficData.sentiments[4].percent + "%",
+          class: "bg-mapCuriosity",
         },
       ],
       chart: {
@@ -493,11 +478,11 @@
             sparkline: { enabled: true },
           },
           colors: [
-            "rgba(" + appVariables.color.themeRgb + ", .15)",
-            "rgba(" + appVariables.color.themeRgb + ", .35)",
-            "rgba(" + appVariables.color.themeRgb + ", .55)",
-            "rgba(" + appVariables.color.themeRgb + ", .75)",
-            "rgba(" + appVariables.color.themeRgb + ", .95)",
+            "rgba(255, 195, 113, 0.5)", // mapNeutral with reduced opacity
+            "rgba(8, 209, 145, 0.5)", // mapPositive with reduced opacity
+            "rgba(255, 141, 114, 0.5)", // mapCuriosity with reduced opacity
+            "rgba(186, 218, 85, 0.5)", // mapInquiry with reduced opacity
+            "rgba(199, 158, 253, 0.5)", // mapDisappointment with reduced opacity
           ],
           stroke: {
             show: false,
@@ -524,10 +509,31 @@
       hoverOpacity: 0.5,
       hoverColor: false,
       zoomOnScroll: false,
-      series: { regions: [{ normalizeFunction: "polynomial" }] },
-      labels: { markers: { render: (marker) => marker.name } },
+      series: {
+        regions: [
+          {
+            attribute: "fill",
+            scale: {
+              neutral: "#ffc371",
+              positive: "#08d191",
+              curiosity: "#ff8d72",
+              inquiry: "#bada55",
+              disappointment: "#c79efd",
+            },
+            values: {
+              RO: "positive",
+              RU: "inquiry",
+              US: "positive",
+              CA: "curiosity",
+              BR: "disappointment",
+            },
+            normalizeFunction: "polynomial",
+          },
+        ],
+      },
+      //labels: { markers: { render: (marker) => marker.name } },
       focusOn: { x: 0.5, y: 0.5, scale: 1 },
-      markers: [
+      /*markers: [
         { name: "Egypt", coords: [26.8206, 30.8025] },
         { name: "Russia", coords: [61.524, 105.3188] },
         { name: "Canada", coords: [56.1304, -106.3468] },
@@ -548,7 +554,7 @@
           fontSize: "12px",
           fill: "rgba(" + appVariables.color.inverseRgb + ", .75)",
         },
-      },
+      },*/
       regionStyle: {
         initial: {
           fill: appVariables.color.inverse,
@@ -815,7 +821,7 @@
         </div>
 
         <div class="row gx-4">
-          <div class="col-lg-6 mb-3 mb-lg-0">
+          <div class="col-lg-5 mb-3 mb-lg-0">
             <table class="w-100 small mb-0 text-truncate text-inverse text-opacity-60">
               <thead>
                 <tr class="text-inverse text-opacity-75">
@@ -829,8 +835,8 @@
                   {#each trafficData.country as country}
                     <tr class={country.class}>
                       <td>{country.name}</td>
-                      <td class="text-end">{country.visits}</td>
-                      <td class="text-end">{country.pct}</td>
+                      <td class="text-end">{formatNumberWithK(country.messages)}</td>
+                      <td class="text-end">{country.percent}</td>
                     </tr>
                   {/each}
                 {:else}
@@ -841,7 +847,7 @@
               </tbody>
             </table>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-7">
             <Card>
               <CardBody class="py-2">
                 <div class="d-flex align-items-center">
