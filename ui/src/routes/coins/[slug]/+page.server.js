@@ -5,7 +5,10 @@ export const actions = {
       const data = await request.formData();
       const userInput = data.get("userInput");
       const coin = data.get("coin");
-      const response = await fetch(`http://localhost:3000/chat?coin=${coin}`);
+      const conversationId = data.get("conversationId");
+      const response = await fetch(
+        `http://localhost:3000/chat?coin=${coin}&conversationId=${conversationId}`,
+      );
       if (!response.ok) {
         throw new Error(`Failed to fetch conversation for coin: ${coin}`);
       }

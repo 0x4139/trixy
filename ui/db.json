@@ -480,11 +480,23 @@
     "messages": [
       {
         "from": "user",
-        "content": "Hello!"
+        "content": "What is Taraxa?",
+        "time": "2024-05-02T00:00:00.000Z"
       },
       {
         "from": "TRIXY",
-        "content": "Hello! How can I help you today?"
+        "content": "Taraxa is a smart contract platform compatible with Ethereum Virtual Machine (EVM) and uses a t-Graph consensus mechanism incorporating blockDAG.",
+        "time": "2024-05-02T00:00:00.000Z"
+      },
+      {
+        "from": "user",
+        "content": "How is the token being distributed?",
+        "time": "2024-05-02T00:00:00.000Z"
+      },
+      {
+        "from": "TRIXY",
+        "content": "Hello! How can I help you today? <p>Here's a simplified message outlining Taraxa's token distribution:</p> <hr /> <p><strong>Taraxa Token Distribution:</strong></p> <ul> <li><strong>Community</strong>: 37%</li> <li><strong>Foundation</strong>: 20%</li> <li><strong>Private Sale</strong>: 15%</li> <li><strong>Team</strong>: 15%</li> <li><strong>Seed Sale</strong>: 9%</li> <li><strong>Public Sale</strong>: 4%</li> </ul> <p>This allocation supports ecosystem development, rewards the community, incentivizes the team, and engages investors through sales.</p>",
+        "time": "2024-05-02T00:00:00.000Z"
       }
     ]
   }
