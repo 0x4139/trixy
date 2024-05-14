@@ -1,5 +1,6 @@
 export async function GET({ fetch, url }) {
   const coin = url.searchParams.get("coin");
+  console.log("stats complete fetch url", `http://localhost:3000/stats?coin=${coin}`);
   const response = await fetch(`http://localhost:3000/stats?coin=${coin}`);
   const stats = await response.json();
   if (stats.errors) {

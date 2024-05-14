@@ -32,13 +32,14 @@
   $: chartPatternDetection = $page.data.chartPatternDetection;
   $: marketPatterns = $page.data.marketPatterns;
   $: trendingCoins = $page.data.trendingCoins;
+  $: currentCoin = getCurrentCoin(trendingCoins);
   $: logs = $page.data.logs;
 
   function randomNo() {
     return Math.floor(Math.random() * 60) + 30;
   }
 
-  function currentCoin(coins) {
+  function getCurrentCoin(coins) {
     return coins.find((coin) => coin.id === $page.params.slug) || $availableCoins[0];
   }
 
@@ -563,8 +564,6 @@
   }
 
   onMount(async () => {
-    setPageTitle("Taraxa");
-
     jsVectormap = await import("jsvectormap");
     await import("jsvectormap/dist/maps/world.js");
 
@@ -584,17 +583,21 @@
   });
 </script>
 
+<svelte:head>
+  <title>TRIXY | {currentCoin.name}</title>
+</svelte:head>
+
 <ul class="breadcrumb">
   <li class="breadcrumb-item"><a href="#/">TRIXY</a></li>
-  <li class="breadcrumb-item active">TARAXA</li>
+  <li class="breadcrumb-item active">{currentCoin.name}</li>
 </ul>
 <h1 class="page-header">
   <img
     class="rounded-5 me-3"
-    alt={currentCoin(trendingCoins).name}
-    src={currentCoin(trendingCoins).icon}
-  />{currentCoin(trendingCoins).name}
-  <small class="text-uppercase">{currentCoin(trendingCoins).symbol}</small>
+    alt={currentCoin.name}
+    src={currentCoin.icon}
+  />{currentCoin.name}
+  <small class="text-uppercase">{currentCoin.symbol}</small>
 </h1>
 <!-- BEGIN row -->
 <div class="row">

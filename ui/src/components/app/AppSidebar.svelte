@@ -29,7 +29,7 @@
       is_header: true,
     },
     {
-      url: "/",
+      url: "/coins/taraxa",
       icon: "fas fa-chart-bar",
       text: "Dashboard",
     },

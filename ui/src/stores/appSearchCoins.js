@@ -23,7 +23,7 @@ export const availableCoins = writable([
     priceChange24h: -0.0010214429094192,
     totalSupply: 10477024644,
     maxSupply: 12000000000,
-    image: "https://assets.coingecko.com/coins/images/4372/small/CPuCDZX.jpg?1696504972",
+    icon: "https://assets.coingecko.com/coins/images/4372/small/CPuCDZX.jpg?1696504972",
     circulatingSupply: 4099296388,
     sparkLine7days: [
       0.0131041232433642, 0.0130594916807107, 0.0129155014890224, 0.0128200951448308,
