@@ -365,61 +365,61 @@
     "list": [
       {
         "title": "Price Increase Alert - Taraxa up by 3%",
-        "time": "just now",
+        "time": "2024-05-02T00:00:00.000Z",
         "badge": "ALERT",
         "highlight": true
       },
       {
         "title": "New Influencers Detected in Taraxa Community",
-        "time": "1 min ago",
+        "time": "2024-05-01T23:59:00.000Z",
         "badge": "INFLUENCER",
         "highlight": true
       },
       {
         "title": "Bullish Patterns Detected in Taraxa Market",
-        "time": "2 mins ago",
+        "time": "2024-05-01T23:58:00.000Z",
         "badge": "MARKET",
         "highlight": true
       },
       {
         "title": "New Topic Detected: Taraxa Scalability Solutions",
-        "time": "3 mins ago",
+        "time": "2024-05-01T23:57:00.000Z",
         "badge": "TOPIC",
         "highlight": false
       },
       {
         "title": "Significant Sentiment Shift in Taraxa Discussions",
-        "time": "5 mins ago",
+        "time": "2024-05-01T23:55:00.000Z",
         "badge": "SENTIMENT",
         "highlight": true
       },
       {
         "title": "High Transaction Volume Detected for Taraxa",
-        "time": "10 mins ago",
+        "time": "2024-05-01T23:50:00.000Z",
         "badge": "TRANSACTION",
         "highlight": false
       },
       {
         "title": "New Subscription - Taraxa Market Insights Plan",
-        "time": "15 mins ago",
+        "time": "2024-05-01T23:45:00.000Z",
         "badge": "SUBSCRIPTION",
         "highlight": true
       },
       {
         "title": "Updated Risk Assessment for Taraxa Investments",
-        "time": "20 mins ago",
+        "time": "2024-05-01T23:40:00.000Z",
         "badge": "RISK",
         "highlight": false
       },
       {
         "title": "Regulatory Update Affecting Taraxa",
-        "time": "30 mins ago",
+        "time": "2024-05-01T23:30:00.000Z",
         "badge": "REGULATORY",
         "highlight": true
       },
       {
         "title": "Community Growth - 13 New Members in Taraxa",
-        "time": "45 mins ago",
+        "time": "2024-05-01T23:15:00.000Z",
         "badge": "COMMUNITY",
         "highlight": true
       }

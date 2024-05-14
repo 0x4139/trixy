@@ -17,6 +17,7 @@
   import PerfectScrollbar from "/src/components/plugins/PerfectScrollbar.svelte";
   import ApexCharts from "/src/components/plugins/ApexCharts.svelte";
   import "jsvectormap/dist/css/jsvectormap.min.css";
+  import moment from "moment";
   import { availableCoins } from "../../../stores/appSearchCoins.js";
   import { page } from "$app/stores";
 
@@ -923,7 +924,7 @@
                         <tr>
                           <td class="pe-3 text-nowrap">Date:</td>
                           <td class="text-inverse text-opacity-75 fw-500"
-                            >{pattern.date}</td
+                            >{moment(pattern.date).format("MMMM D, YYYY")}</td
                           >
                         </tr>
                       </table>
@@ -985,7 +986,7 @@
                         {log.title}
                       </span>
                     </td>
-                    <td><small>{log.time}</small></td>
+                    <td><small>{getTimeAgo(log.time)}</small></td>
                     <td>
                       <span
                         class="badge d-block rounded-0 pt-5px w-100px"
