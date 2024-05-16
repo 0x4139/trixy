@@ -21,13 +21,14 @@
   import { enhance } from "$app/forms";
   import { availableCoins } from "../../../stores/appSearchCoins.js";
   import { page } from "$app/stores";
+  import { writable } from "svelte/store";
 
   let statsData;
   let serverData;
-  let trafficData;
   let jsVectormap;
   let logs;
   let unsubscribe;
+  let trafficData;
 
   $: ({ communityMessages, marketData, sentimentAnalysis, topics, kolTracking } =
     $page.data.stats);
@@ -36,17 +37,17 @@
   $: trendingCoins = $page.data.trendingCoins;
   $: currentCoin = getCurrentCoin(trendingCoins);
   $: logs = $page.data.logs;
-  $: trafficData = $page.data.trafficData;
+  $: trafficDataFromServer = $page.data.trafficData;
+  $: console.log(trafficDataFromServer);
   $: conversationId = $page.data.conversationId;
-  export let form;
-  $: messages = form?.messages;
 
-  function randomNo() {
-    return Math.floor(Math.random() * 60) + 30;
-  }
+  $: conversation = $page.data.conversation;
 
   function getCurrentCoin(coins) {
-    return coins.find((coin) => coin.id === $page.params.slug) || $availableCoins[0];
+    const currentCoin = coins.find((coin) => coin.id === $page.params.slug);
+    if (!currentCoin) {
+      return $availableCoins[0];
+    } else return currentCoin;
   }
 
   function getStatsData(appVariables) {
@@ -447,31 +448,31 @@
 
   function getTrafficData(appVariables) {
     trafficData = {
-      country: trafficData.countries,
+      country: trafficDataFromServer.countries,
       source: [
         {
-          name: trafficData.sentiments[0].name,
-          percentage: trafficData.sentiments[0].percent + "%",
+          name: trafficDataFromServer.sentiments[0].name,
+          percentage: trafficDataFromServer.sentiments[0].percent + "%",
           class: "bg-mapNeutral",
         },
         {
-          name: trafficData.sentiments[1].name,
-          percentage: trafficData.sentiments[1].percent + "%",
+          name: trafficDataFromServer.sentiments[1].name,
+          percentage: trafficDataFromServer.sentiments[1].percent + "%",
           class: "bg-mapPositive",
         },
         {
-          name: trafficData.sentiments[2].name,
-          percentage: trafficData.sentiments[2].percent + "%",
+          name: trafficDataFromServer.sentiments[2].name,
+          percentage: trafficDataFromServer.sentiments[2].percent + "%",
           class: "bg-mapDisappointment",
         },
         {
-          name: trafficData.sentiments[3].name,
-          percentage: trafficData.sentiments[3].percent + "%",
+          name: trafficDataFromServer.sentiments[3].name,
+          percentage: trafficDataFromServer.sentiments[3].percent + "%",
           class: "bg-mapInquiry",
         },
         {
-          name: trafficData.sentiments[4].name,
-          percentage: trafficData.sentiments[4].percent + "%",
+          name: trafficDataFromServer.sentiments[4].name,
+          percentage: trafficDataFromServer.sentiments[4].percent + "%",
           class: "bg-mapCuriosity",
         },
       ],
@@ -500,7 +501,13 @@
           plotOptions: {
             pie: { donut: { background: "transparent" } },
           },
-          series: [randomNo(), randomNo(), randomNo(), randomNo(), randomNo()],
+          series: [
+            trafficDataFromServer.sentiments[0].percent,
+            trafficDataFromServer.sentiments[1].percent,
+            trafficDataFromServer.sentiments[2].percent,
+            trafficDataFromServer.sentiments[3].percent,
+            trafficDataFromServer.sentiments[4].percent,
+          ],
         },
       },
     };
@@ -594,8 +601,6 @@
   });
 </script>
 
-{@debug messages}
-
 <svelte:head>
   <title>TRIXY | {currentCoin.name}</title>
 </svelte:head>
@@ -670,74 +675,26 @@
         <PerfectScrollbar class="h-200">
           <CardBody class="bg-inverse bg-opacity-10">
             <div class="widget-chat">
-              <div class="widget-chat-item reply">
-                <div class="widget-chat-content">
-                  <div class="widget-chat-message last">What is Taraxa?</div>
-                  <div class="widget-chat-status">
-                    <b>Read</b> 16:26
+              {#if conversation}
+                {#each conversation as message}
+                  <div class="widget-chat-item {message.from === 'TRIXY' ? '' : 'reply'}">
+                    <div class="widget-chat-content">
+                      {#if message.from === "TRIXY"}
+                        <div class="widget-chat-name">TRIXY</div>
+                      {/if}
+                      <div class="widget-chat-message last">
+                        {@html message.content}
+                      </div>
+                      {#if message.from !== "TRIXY"}
+                        <div class="widget-chat-status">
+                          <b>Read</b>
+                          {message.time}
+                        </div>
+                      {/if}
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="widget-chat-item">
-                <!--                                <div class="widget-chat-media"><img src="/img/user/user-2.jpg" alt=""/></div>-->
-                <div class="widget-chat-content">
-                  <div class="widget-chat-name">TRIXY</div>
-                  <div class="widget-chat-message last">
-                    Taraxa is a smart contract platform compatible with Ethereum Virtual
-                    Machine (EVM) and uses a t-Graph consensus mechanism incorporating
-                    blockDAG.
-                  </div>
-                </div>
-              </div>
-              <div class="widget-chat-item reply">
-                <div class="widget-chat-content">
-                  <div class="widget-chat-message last">
-                    How is the token being distributed?
-                  </div>
-                  <div class="widget-chat-status">
-                    <b>Read</b> 16:26
-                  </div>
-                </div>
-              </div>
-              <div class="widget-chat-item">
-                <!--                                <div class="widget-chat-media"><img src="/img/user/user-2.jpg" alt=""/></div>-->
-                <div class="widget-chat-content">
-                  <div class="widget-chat-name">TRIXY</div>
-                  <div class="widget-chat-message last">
-                    <p>
-                      Here&#39;s a simplified message outlining Taraxa&#39;s token
-                      distribution:
-                    </p>
-                    <hr />
-                    <p>
-                      <strong>Taraxa Token Distribution:</strong>
-                    </p>
-                    <ul>
-                      <li>
-                        <strong>Community</strong>: 37%
-                      </li>
-                      <li>
-                        <strong>Foundation</strong>: 20%
-                      </li>
-                      <li>
-                        <strong>Private Sale</strong>: 15%
-                      </li>
-                      <li><strong>Team</strong>: 15%</li>
-                      <li>
-                        <strong>Seed Sale</strong>: 9%
-                      </li>
-                      <li>
-                        <strong>Public Sale</strong>: 4%
-                      </li>
-                    </ul>
-                    <p>
-                      This allocation supports ecosystem development, rewards the
-                      community, incentivizes the team, and engages investors through
-                      sales.
-                    </p>
-                  </div>
-                </div>
-              </div>
+                {/each}
+              {/if}
               <div class="widget-chat-date">Today 14:21</div>
             </div>
           </CardBody>
@@ -846,7 +803,7 @@
               </thead>
               <tbody>
                 {#if trafficData && trafficData.country}
-                  {#each trafficData.country as country}
+                  {#each trafficData?.country as country}
                     <tr class={country.class}>
                       <td>{country.name}</td>
                       <td class="text-end">{formatNumberWithK(country.messages)}</td>
@@ -1025,4 +982,5 @@
   </div>
   <!-- END activity-log -->
 </div>
+
 <!-- END row -->

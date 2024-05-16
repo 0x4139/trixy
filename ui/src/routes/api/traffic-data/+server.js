@@ -7,5 +7,5 @@ export async function GET({ fetch, url }) {
   if (trafficData.errors) {
     throw new Error(trafficData.errors);
   }
-  return json(trafficData);
+  return new Response(JSON.stringify(trafficData));
 }

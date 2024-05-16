@@ -1,4 +1,7 @@
 <script>
   import { goto } from "$app/navigation";
-  goto("/coins/taraxa");
+  import { onMount } from "svelte";
+  onMount(() => {
+    goto("/coins/taraxa");
+  });
 </script>
