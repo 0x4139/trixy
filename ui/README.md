@@ -25,6 +25,14 @@ npm run dev
 npm run dev -- --open
 ```
 
+Additionally, to mock an API server using `json-server`, run the following command in a separate terminal:
+
+```bash
+npx json-server db.json
+```
+
+The db.json file is located in the /ui folder.
+
 ## Building
 
 To create a production version of your app:

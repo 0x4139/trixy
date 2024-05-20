@@ -1,0 +1,503 @@
+{
+  "stats": {
+    "communityMessages": {
+      "id": 1,
+      "total": 4200000,
+      "weekChangePercentage": 13.8,
+      "newUsersPercentage": 5,
+      "messagesPerHour": 13,
+      "chartData": [
+        45,
+        38,
+        32,
+        51,
+        42,
+        49,
+        40,
+        35,
+        48,
+        52,
+        55,
+        47,
+        42
+      ]
+    },
+    "marketData": {
+      "price": 0.01005972,
+      "changePercentage": -2,
+      "tradingVolume": 20000,
+      "spread": -0.6532,
+      "chartData": [
+        100,
+        102,
+        101,
+        103,
+        102,
+        104,
+        105,
+        104,
+        103,
+        102,
+        101,
+        102,
+        100
+      ]
+    },
+    "sentimentAnalysis": {
+      "total": 3000,
+      "weekChangePercentage": -1.5,
+      "totalEmotions": 1500,
+      "sentimentChangePercentage": 2.6,
+      "pieChartData": {
+        "positive": 45,
+        "neutral": 20,
+        "negative": 35
+      }
+    },
+    "topics": {
+      "total": 150,
+      "weekChangePercentage": 3.5,
+      "totalTopics": 75,
+      "topicsLast24h": 10,
+      "pieChartData": [
+        20,
+        30,
+        25,
+        15,
+        10
+      ]
+    },
+    "kolTracking": {
+      "totalMessages": 3100,
+      "weekChangePercentage": -10.5,
+      "percentOfTotalCommunity": 40.2,
+      "totalUsers": 635,
+      "chartData": [
+        {
+          "name": "user_1",
+          "data": {
+            "messagesSent": 720,
+            "influenceScore": 84,
+            "positiveSentimentPercentage": 68,
+            "marketMovementCorrelations": 8
+          }
+        },
+        {
+          "name": "user_2",
+          "data": {
+            "messagesSent": 600,
+            "influenceScore": 72,
+            "positiveSentimentPercentage": 74,
+            "marketMovementCorrelations": 6
+          }
+        },
+        {
+          "name": "user_3",
+          "data": {
+            "messagesSent": 650,
+            "influenceScore": 90,
+            "positiveSentimentPercentage": 79,
+            "marketMovementCorrelations": 12
+          }
+        },
+        {
+          "name": "user_4",
+          "data": {
+            "messagesSent": 540,
+            "influenceScore": 81,
+            "positiveSentimentPercentage": 64,
+            "marketMovementCorrelations": 9
+          }
+        }
+      ]
+    }
+  },
+  "chart-pattern-detection": {
+    "chartData": [
+      {
+        "x": "2024-01-01T01:00:00.000Z",
+        "y": [
+          6050,
+          6200,
+          6000,
+          6100
+        ]
+      },
+      {
+        "x": "2024-01-01T02:00:00.000Z",
+        "y": [
+          6100,
+          6400,
+          6000,
+          6350
+        ]
+      },
+      {
+        "x": "2024-01-01T03:00:00.000Z",
+        "y": [
+          6350,
+          6600,
+          6300,
+          6500
+        ]
+      },
+      {
+        "x": "2024-01-01T04:00:00.000Z",
+        "y": [
+          6500,
+          6800,
+          6400,
+          6700
+        ]
+      },
+      {
+        "x": "2024-01-01T05:00:00.000Z",
+        "y": [
+          6700,
+          7000,
+          6600,
+          6900
+        ]
+      },
+      {
+        "x": "2024-01-01T06:00:00.000Z",
+        "y": [
+          6900,
+          6950,
+          6700,
+          6800
+        ]
+      },
+      {
+        "x": "2024-01-01T07:00:00.000Z",
+        "y": [
+          6800,
+          6850,
+          6600,
+          6750
+        ]
+      },
+      {
+        "x": "2024-01-01T08:00:00.000Z",
+        "y": [
+          6750,
+          6800,
+          6500,
+          6600
+        ]
+      },
+      {
+        "x": "2024-01-01T09:00:00.000Z",
+        "y": [
+          6600,
+          6825,
+          6500,
+          6800
+        ]
+      },
+      {
+        "x": "2024-01-01T10:00:00.000Z",
+        "y": [
+          6800,
+          6925,
+          6700,
+          6900
+        ]
+      },
+      {
+        "x": "2024-01-01T11:00:00.000Z",
+        "y": [
+          6900,
+          7025,
+          6800,
+          7000
+        ]
+      },
+      {
+        "x": "2024-01-01T12:00:00.000Z",
+        "y": [
+          7000,
+          7050,
+          6750,
+          6800
+        ]
+      },
+      {
+        "x": "2024-01-01T13:00:00.000Z",
+        "y": [
+          6800,
+          6900,
+          6600,
+          6750
+        ]
+      },
+      {
+        "x": "2024-01-01T14:00:00.000Z",
+        "y": [
+          6750,
+          7050,
+          6750,
+          7000
+        ]
+      },
+      {
+        "x": "2024-01-01T15:00:00.000Z",
+        "y": [
+          7000,
+          7100,
+          6800,
+          6900
+        ]
+      },
+      {
+        "x": "2024-01-01T16:00:00.000Z",
+        "y": [
+          6900,
+          7000,
+          6700,
+          6800
+        ]
+      }
+    ],
+    "detectedPatterns": {
+      "detectedTicks": 205,
+      "totalTicks": 210,
+      "lastUpdateTime": "2024-01-01T16:00:00.000Z",
+      "bullish": 195,
+      "bearish": 120,
+      "neutral": 20
+    },
+    "confirmedPatterns": {
+      "confirmed": 183,
+      "total": 205,
+      "lastUpdateTime": "2024-01-01T16:00:00.000Z",
+      "bullish": 60,
+      "bearish": 23,
+      "neutral": 17
+    }
+  },
+  "market-patterns": {
+    "list": [
+      {
+        "type": "bullish",
+        "title": "Bullish Engulfing Pattern",
+        "trend": "down trend",
+        "date": "2024-05-02T00:00:00.000Z",
+        "confidence": "150 of 200",
+        "action": "buy",
+        "description": "A bullish engulfing pattern indicating a potential reversal of the current downtrend."
+      },
+      {
+        "type": "bearish",
+        "title": "Bearish Engulfing Pattern",
+        "trend": "up trend",
+        "date": "2024-05-01T00:00:00.000Z",
+        "confidence": "170 of 200",
+        "action": "sell",
+        "description": "A bearish engulfing pattern suggesting a possible end to the recent uptrend."
+      },
+      {
+        "type": "bearish",
+        "title": "Three Black Crows",
+        "trend": "up trend",
+        "date": "2024-04-30T00:00:00.000Z",
+        "confidence": "180 of 200",
+        "action": "sell",
+        "description": "Three consecutive long red candles with little to no lower shadows indicate a strong downturn."
+      },
+      {
+        "type": "bullish",
+        "title": "Morning Star",
+        "trend": "down trend",
+        "date": "2024-04-29T00:00:00.000Z",
+        "confidence": "160 of 200",
+        "action": "buy",
+        "description": "A morning star pattern, typically a sign of a reversal to an uptrend."
+      },
+      {
+        "type": "bullish",
+        "title": "Bullish Hammer",
+        "trend": "down trend",
+        "date": "2024-04-28T00:00:00.000Z",
+        "confidence": "140 of 200",
+        "action": "buy",
+        "description": "A small body near the top with a long lower shadow indicates a potential upward reversal."
+      },
+      {
+        "type": "bearish",
+        "title": "Hanging Man",
+        "trend": "up trend",
+        "date": "2024-04-27T00:00:00.000Z",
+        "confidence": "135 of 200",
+        "action": "sell",
+        "description": "A bearish reversal pattern that occurs at the end of an uptrend."
+      },
+      {
+        "type": "neutral",
+        "title": "Doji",
+        "trend": "uncertain",
+        "date": "2024-04-26T00:00:00.000Z",
+        "confidence": "100 of 200",
+        "action": "watch",
+        "description": "A Doji represents indecision in the market, with opening and closing prices essentially equal."
+      },
+      {
+        "type": "bearish",
+        "title": "Shooting Star",
+        "trend": "up trend",
+        "date": "2024-04-25T00:00:00.000Z",
+        "confidence": "155 of 200",
+        "action": "sell",
+        "description": "A shooting star pattern after an uptrend suggests a bearish reversal."
+      },
+      {
+        "type": "bullish",
+        "title": "Piercing Line",
+        "trend": "down trend",
+        "date": "2024-04-24T00:00:00.000Z",
+        "confidence": "145 of 200",
+        "action": "buy",
+        "description": "A bullish reversal pattern where the second day’s candle covers more than half of the previous day's candle body."
+      }
+    ]
+  },
+  "logs": {
+    "list": [
+      {
+        "title": "Price Increase Alert - Taraxa up by 3%",
+        "time": "2024-05-02T00:00:00.000Z",
+        "badge": "ALERT",
+        "highlight": true
+      },
+      {
+        "title": "New Influencers Detected in Taraxa Community",
+        "time": "2024-05-01T23:59:00.000Z",
+        "badge": "INFLUENCER",
+        "highlight": true
+      },
+      {
+        "title": "Bullish Patterns Detected in Taraxa Market",
+        "time": "2024-05-01T23:58:00.000Z",
+        "badge": "MARKET",
+        "highlight": true
+      },
+      {
+        "title": "New Topic Detected: Taraxa Scalability Solutions",
+        "time": "2024-05-01T23:57:00.000Z",
+        "badge": "TOPIC",
+        "highlight": false
+      },
+      {
+        "title": "Significant Sentiment Shift in Taraxa Discussions",
+        "time": "2024-05-01T23:55:00.000Z",
+        "badge": "SENTIMENT",
+        "highlight": true
+      },
+      {
+        "title": "High Transaction Volume Detected for Taraxa",
+        "time": "2024-05-01T23:50:00.000Z",
+        "badge": "TRANSACTION",
+        "highlight": false
+      },
+      {
+        "title": "New Subscription - Taraxa Market Insights Plan",
+        "time": "2024-05-01T23:45:00.000Z",
+        "badge": "SUBSCRIPTION",
+        "highlight": true
+      },
+      {
+        "title": "Updated Risk Assessment for Taraxa Investments",
+        "time": "2024-05-01T23:40:00.000Z",
+        "badge": "RISK",
+        "highlight": false
+      },
+      {
+        "title": "Regulatory Update Affecting Taraxa",
+        "time": "2024-05-01T23:30:00.000Z",
+        "badge": "REGULATORY",
+        "highlight": true
+      },
+      {
+        "title": "Community Growth - 13 New Members in Taraxa",
+        "time": "2024-05-01T23:15:00.000Z",
+        "badge": "COMMUNITY",
+        "highlight": true
+      }
+    ]
+  },
+  "traffic-data": {
+    "countries": [
+      {
+        "name": "FRANCE",
+        "messages": 13849,
+        "percent": 40.79
+      },
+      {
+        "name": "GERMANY",
+        "messages": 10349,
+        "percent": 30.79
+      },
+      {
+        "name": "UK",
+        "messages": 8349,
+        "percent": 20.79
+      },
+      {
+        "name": "USA",
+        "messages": 7349,
+        "percent": 10.79
+      },
+      {
+        "name": "JAPAN",
+        "messages": 6349,
+        "percent": 5.79
+      }
+    ],
+    "sentiments": [
+      {
+        "name": "NEUTRAL",
+        "percent": 40
+      },
+      {
+        "name": "POSITIVE",
+        "percent": 30
+      },
+      {
+        "name": "DISAPPOINTMENT",
+        "percent": 20
+      },
+      {
+        "name": "INQUIRY",
+        "percent": 5
+      },
+      {
+        "name": "CURIOSITY",
+        "percent": 5
+      }
+    ]
+  },
+  "chat": {
+    "conversation": [
+      {
+        "from": "user",
+        "content": "What is Taraxa?",
+        "time": "2024-05-02T00:00:00.000Z"
+      },
+      {
+        "from": "TRIXY",
+        "content": "<p>Taraxa is a smart contract platform compatible with Ethereum Virtual Machine (EVM) and uses a t-Graph consensus mechanism incorporating blockDAG.</p>",
+        "time": "2024-05-02T00:00:00.000Z"
+      },
+      {
+        "from": "user",
+        "content": "How is the token being distributed?",
+        "time": "2024-05-02T00:00:00.000Z"
+      },
+      {
+        "from": "TRIXY",
+        "content": "<p>Here's a simplified message outlining Taraxa's token distribution:</p> <hr /> <p><strong>Taraxa Token Distribution:</strong></p> <ul> <li><strong>Community</strong>: 37%</li> <li><strong>Foundation</strong>: 20%</li> <li><strong>Private Sale</strong>: 15%</li> <li><strong>Team</strong>: 15%</li> <li><strong>Seed Sale</strong>: 9%</li> <li><strong>Public Sale</strong>: 4%</li> </ul> <p>This allocation supports ecosystem development, rewards the community, incentivizes the team, and engages investors through sales.</p>",
+        "time": "2024-05-02T00:00:00.000Z"
+      }
+    ]
+  }
+}
