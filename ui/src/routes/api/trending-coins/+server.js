@@ -21,7 +21,7 @@ export async function GET({ fetch }) {
 
   const result = await response.json();
 
-  //console.log("first coin=", result.coins[0]);
+  console.log("first coin=", result.coins[0]);
 
   const trendingCoins = result.coins.map((coin) => ({
     is_coin: true,
@@ -30,6 +30,17 @@ export async function GET({ fetch }) {
     icon: coin.item.small,
     symbol: coin.item.symbol,
     url: `/coins/${coin.item.id}`,
+    rank: coin.item.market_cap_rank,
+    price_usd: coin.item.data.price,
+    price_change_percentage_24h: coin.item.data.price_change_percentage_24h,
+    volume_usd: parseFloat(
+      coin.item.data.total_volume.replace(/\$/g, "").replace(/,/g, ""),
+    ),
+    market_cap_usd: parseFloat(
+      coin.item.data.market_cap.replace(/\$/g, "").replace(/,/g, ""),
+    ),
+    sparkline_svg: coin.item.data.sparkline,
+    content: coin.item.data.content,
   }));
   //console.log("trendingCoins=", trendingCoins);
   return new Response(JSON.stringify(trendingCoins));

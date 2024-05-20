@@ -38,9 +38,7 @@
   $: currentCoin = getCurrentCoin(trendingCoins);
   $: logs = $page.data.logs;
   $: trafficDataFromServer = $page.data.trafficData;
-  $: console.log(trafficDataFromServer);
   $: conversationId = $page.data.conversationId;
-
   $: conversation = $page.data.conversation;
 
   function getCurrentCoin(coins) {
@@ -521,6 +519,7 @@
       hoverOpacity: 0.5,
       hoverColor: false,
       zoomOnScroll: false,
+      zoomButtons: true,
       series: {
         regions: [
           {
@@ -546,11 +545,8 @@
       //labels: { markers: { render: (marker) => marker.name } },
       focusOn: { x: 0.5, y: 0.5, scale: 1 },
       /*markers: [
-        { name: "Egypt", coords: [26.8206, 30.8025] },
-        { name: "Russia", coords: [61.524, 105.3188] },
-        { name: "Canada", coords: [56.1304, -106.3468] },
-        { name: "Greenland", coords: [71.7069, -42.6043] },
-        { name: "Brazil", coords: [-14.235, -51.9253] },
+        { name: "Botosani", coords: [47.7469, 26.6592] },
+        { name: "Bucuresti", coords: [44.4348, 26.1069] },
       ],
       markerStyle: {
         initial: {
@@ -578,7 +574,7 @@
         hover: { fillOpacity: 0.5 },
       },
       backgroundColor: "transparent",
-    });
+    }); //.setFocus({ region: "RO", scale: 1.5 });
   }
 
   onMount(async () => {
@@ -635,7 +631,7 @@
                 <!-- BEGIN stat-lg -->
                 <div class="row align-items-center mb-2">
                   <div class="col-{stat.sizing?.left ? stat.sizing.left : 7}">
-                    <h3 class="mb-0">{stat.total}</h3>
+                    <h4 class="mb-0">{stat.total}</h4>
                   </div>
                   <div class="col-{stat.sizing?.right ? stat.sizing.right : 5}">
                     <div class="mt-n2 {stat.chartClass}">
@@ -662,6 +658,8 @@
             </Card>
           </div>
         {/each}
+      {:else}
+        <div class="col-xl-6">Loading...</div>
       {/if}
     </div>
   </div>

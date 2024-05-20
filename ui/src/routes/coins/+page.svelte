@@ -19,9 +19,12 @@
   import { availableCoins } from "../../stores/appSearchCoins.js";
   import { appVariables } from "../../stores/appVariables.js";
   import ApexCharts from "../../components/plugins/ApexCharts.svelte";
+  import { page } from "$app/stores";
 
   let table;
   let datatable;
+  $: trendingCoins = $page.data.trendingCoins;
+  $: console.log(trendingCoins[0]);
 
   onMount(async () => {
     window.jQuery = jQuery;
@@ -59,6 +62,13 @@
       ],
     };
   }
+
+  function getCirculatingSupply(marketCap, price) {
+    return (marketCap / price).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  }
 </script>
 
 <ul class="breadcrumb">
@@ -81,25 +91,38 @@
     </tr>
   </thead>
   <tbody>
-    {#each $availableCoins as coin}
+    {#each trendingCoins as coin}
       <tr>
-        <td>{coin.marketCapRank}</td>
-        <td><img alt={coin.name} style="height: 24px;width: 24px" class="me-2 rounded-4" src={coin.image} />{coin.name} <span class="text-secondary text-uppercase">{coin.symbol}</span> </td>
-        <td class={coin.daily}>{coin.price}</td>
-        <td class={coin.dailyChange > 0 ? "text-theme" : "text-danger"}>{coin.dailyChange}%</td>
-        <td>{coin.totalVolume}</td>
-        <td>{coin.marketCap}</td>
+        <td>{coin.rank}</td>
         <td>
-          <div class="progress h-3px mt-2">
-            <div class="progress-bar bg-theme" style="width: {(coin.circulatingSupply / coin.totalSupply) * 100}%"></div>
-          </div>
+          <img
+            alt={coin.name}
+            style="height: 24px; width: 24px;"
+            class="me-2 rounded-4"
+            src={coin.icon}
+          /><a href={`/coins/${coin.id}`}>{coin.name}</a>
+          <span class="text-secondary text-uppercase">{coin.symbol}</span>
         </td>
+        <td class="daily">{coin.price_usd.toFixed(10).toLocaleString()}</td>
+        <td
+          class={coin.price_change_percentage_24h.usd > 0 ? "text-theme" : "text-danger"}
+          >{coin.price_change_percentage_24h.usd.toFixed(4).toLocaleString()}%</td
+        >
+        <td>{coin.volume_usd.toLocaleString()}</td>
+        <td>{coin.market_cap_usd.toLocaleString()}</td>
         <td>
-          {#if $appVariables.length > 0}
-            <ApexCharts options={getSparkLine(coin.sparkLine7days, coin.dailyChange > 0 ? $appVariables.color.theme : $appVariables.color.danger)}></ApexCharts>
-          {/if}
+          {getCirculatingSupply(coin.market_cap_usd, coin.price_usd)}
+        </td>
+        <td class="sparkline">
+          <img src={coin.sparkline_svg} alt="" height="30" />
         </td>
       </tr>
     {/each}
   </tbody>
 </table>
+
+<style>
+  td {
+    text-align: left;
+  }
+</style>
